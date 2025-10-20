@@ -5,16 +5,16 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import axios from 'axios';
 import * as cheerio from 'cheerio';
 
-// --- 1. SETUP ---
 dotenv.config();
 const app = express();
-const port = 3001; // We'll run the server on port 3001
+const port = 3001; 
 
-// Middlewares
-app.use(cors()); // Allow requests from our React app
-app.use(express.json()); // Allow the server to read JSON
 
-// --- 2. GEMINI API SETUP ---
+app.use(cors());
+
+app.use(express.json()); 
+
+
 const API_KEY = process.env.GEMINI_API_KEY;
 if (!API_KEY) {
   throw new Error("GEMINI_API_KEY is not defined in .env");
@@ -22,7 +22,8 @@ if (!API_KEY) {
 const genAI = new GoogleGenerativeAI(API_KEY);
 const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
 
-// This is the prompt we'll send to Gemini
+
+
 const generationPrompt = (articleText) => `
 You are an expert content strategist.
 Your task is to analyze the following news article text and generate a concise summary and platform-specific social media posts.
@@ -46,9 +47,7 @@ The JSON object must have the following keys: "summary", "linkedin", "twitter", 
 }
 `;
 
-// --- 3. HELPER FUNCTIONS ---
 
-// Function to call Gemini API
 async function generateContent(articleText) {
   try {
     const prompt = generationPrompt(articleText);
@@ -56,10 +55,10 @@ async function generateContent(articleText) {
     const response = await result.response;
     let text = response.text();
     
-    // Clean the response
+    
     text = text.replace(/```json/g, "").replace(/```/g, "").trim();
     
-    // Parse and return the JSON
+    
     return JSON.parse(text);
   } catch (error) {
     console.error("Gemini API Error:", error);
@@ -70,7 +69,8 @@ async function generateContent(articleText) {
   }
 }
 
-// Function to scrape text from a URL
+
+
 async function scrapeTextFromUrl(url) {
   try {
     const { data } = await axios.get(url, {
@@ -97,7 +97,7 @@ async function scrapeTextFromUrl(url) {
   }
 }
 
-// --- 4. API ENDPOINTS ---
+
 app.post('/api/summarize-text', async (req, res) => {
   try {
     const { text } = req.body;
@@ -129,7 +129,6 @@ app.post('/api/summarize-url', async (req, res) => {
   }
 });
 
-// --- 5. START SERVER ---
 app.listen(port, () => {
   console.log(`🚀 Server running at http://localhost:${port}`);
 });

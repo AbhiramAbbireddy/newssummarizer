@@ -9,7 +9,7 @@ import Footer from './components/Footer/Footer';
 import ThemeToggle from './components/ThemeToggle/ThemeToggle';
 
 // Define the server URL
-const API_BASE_URL = "http://localhost:3001";
+const API_BASE_URL = "https://newssummarizer-jxn0.onrender.com";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);

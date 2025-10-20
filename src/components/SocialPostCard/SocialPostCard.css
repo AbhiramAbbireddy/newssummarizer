@@ -1,0 +1,100 @@
+/* src/components/SocialPostCard/SocialPostCard.css */
+.social-post-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Ensures rounded corners */
+}
+
+/* This wrapper contains only the content to be downloaded */
+.card-content-wrapper {
+  padding: 1.5rem;
+  /* We use a CSS variable to set the background color */
+  background-color: var(--card-bg-color, #f8fafc);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.card-icon {
+  font-size: 1.75rem; /* Icon size */
+  margin-right: 0.75rem;
+  color: #334155;
+  /* Match icon color to the background */
+  color: var(--card-bg-color);
+  -webkit-text-stroke: 1px #475569; /* Outline effect */
+}
+
+/* Specific icon colors */
+.card-content-wrapper[style*="#e0f2fe"] .card-icon { /* LinkedIn */
+  color: #0a66c2;
+  -webkit-text-stroke: 0;
+}
+.card-content-wrapper[style*="#e0f7fa"] .card-icon { /* Twitter */
+  color: #1da1f2;
+  -webkit-text-stroke: 0;
+}
+.card-content-wrapper[style*="#fdf4ff"] .card-icon { /* Instagram */
+  color: #c13584;
+  -webkit-text-stroke: 0;
+}
+.card-content-wrapper[style*="#ffebee"] .card-icon { /* YouTube */
+  color: #ff0000;
+  -webkit-text-stroke: 0;
+}
+
+
+.card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.card-content {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #334155;
+  white-space: pre-wrap; /* Preserves line breaks from the AI */
+  
+  /* This ensures the download image looks good */
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* --- Action Buttons --- */
+.card-actions {
+  display: flex;
+  border-top: 1px solid #e2e8f0;
+  background-color: #fcfdff;
+}
+
+.card-btn {
+  flex: 1; /* Each button takes half the space */
+  padding: 0.8rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.card-btn:hover {
+  background-color: #f8fafc;
+}
+
+.card-btn.copy-btn {
+  color: #4a80ee;
+  border-right: 1px solid #e2e8f0;
+}
+
+.card-btn.download-btn {
+  color: #16a34a; /* Green */
+}

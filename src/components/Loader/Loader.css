@@ -1,0 +1,33 @@
+/* src/components/Loader/Loader.css */
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.loader-spinner {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #f3f3f3; /* Light grey */
+  border-top: 5px solid #4a80ee; /* Blue */
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+.loader-message {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

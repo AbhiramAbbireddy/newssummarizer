@@ -2,7 +2,13 @@
 import { useState } from 'react';
 import './App.css';
 import Header from './components/Header/Header';
-import InputArea from './components/InputArea/InputArea'; // <-- 1. IMPORT
+import InputArea from './components/InputArea/InputArea';
+import Loader from './components/Loader/Loader'; // <-- 1. IMPORT LOADER
+import ResultsArea from './components/ResultsArea/ResultsArea'; // <-- 2. IMPORT RESULTSAREA
+import Footer from './components/Footer/Footer';
+
+// Define the server URL
+const API_BASE_URL = "http://localhost:3001";
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,24 +17,47 @@ function App() {
   const [error, setError] = useState(null);
 
   const handleGenerateContent = async (inputType, content) => {
-    console.log("Generating content for:", inputType, content);
     setIsLoading(true);
     setError(null);
     setSummary("");
     setSocialPosts(null);
 
-    // --- API LOGIC WILL GO HERE ---
-    
-    setTimeout(() => {
-      setIsLoading(false);
-      setSummary("This is a placeholder summary. The real one will come from the Gemini API.");
-      setSocialPosts({
-        linkedin: "This is a placeholder LinkedIn post.",
-        twitter: "This is a placeholder X (Twitter) post.",
-        instagram: "This is a placeholder Instagram post.",
-        youtube: "This is a placeholder YouTube post."
+    try {
+      let endpoint = '';
+      let body = {};
+
+      if (inputType === 'url') {
+        endpoint = `${API_BASE_URL}/api/summarize-url`;
+        body = { url: content };
+      } else { // inputType === 'text'
+        endpoint = `${API_BASE_URL}/api/summarize-text`;
+        body = { text: content };
+      }
+
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
       });
-    }, 2000);
+
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.error || `HTTP error! status: ${response.status}`);
+      }
+
+      const results = await response.json();
+      
+      setSummary(results.summary);
+      setSocialPosts(results); 
+
+    } catch (err) {
+      console.error(err);
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -37,27 +66,24 @@ function App() {
         <Header />
         
         <main>
-          {/* 2. ADD THE COMPONENT */}
           <InputArea onGenerate={handleGenerateContent} isLoading={isLoading} />
 
-          {/* This is the placeholder results area */}
-          {isLoading && <p style={{ textAlign: 'center', marginTop: '1rem' }}>Loading...</p>}
-          {error && <p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>{error}</p>}
+          {/* --- 3. UPDATE THE RESULTS DISPLAY --- */}
           
-          {summary && (
-            <div style={{ marginTop: '2rem', padding: '1rem', background: '#fff', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-              <h3>Summary:</h3>
-              <p>{summary}</p>
-            </div>
+          {/* Show Loader when loading */}
+          {isLoading && <Loader />}
+          
+          {/* Show error if one exists */}
+          {error && <p style={{ color: 'red', textAlign: 'center', marginTop: '1rem' }}>Error: {error}</p>}
+          
+          {/* Show ResultsArea when not loading AND summary exists */}
+          {!isLoading && summary && (
+            <ResultsArea summary={summary} socialPosts={socialPosts} />
           )}
-          {socialPosts && (
-             <div style={{ marginTop: '1rem', padding: '1rem', background: '#fff', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-              <h3>Social Posts:</h3>
-              <pre>{JSON.stringify(socialPosts, null, 2)}</pre>
-            </div>
-          )}
+
         </main>
       </div>
+      <Footer />
     </div>
   );
 }

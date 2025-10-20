@@ -1,0 +1,74 @@
+/* src/components/ResultsArea/ResultsArea.css */
+.results-area {
+  margin-top: 2.5rem;
+}
+
+.results-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.75rem;
+}
+
+/* --- Summary Section --- */
+.summary-section {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.summary-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #334155;
+  margin-bottom: 1.5rem;
+  white-space: pre-wrap; /* This preserves line breaks from the AI */
+}
+
+.copy-btn {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #4a80ee;
+  background-color: #eaf2ff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-btn:hover {
+  background-color: #dbe7ff;
+}
+
+/* --- Social Posts Section --- */
+.social-posts-section {
+  margin-top: 2.5rem;
+}
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Default to 1 column on mobile */
+  gap: 1.5rem;
+}
+
+/* On larger screens, switch to 2 columns */
+@media (min-width: 768px) {
+  .posts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Just for the <pre> tag placeholder */
+.posts-grid pre {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+  font-size: 0.85rem;
+  grid-column: 1 / -1; /* Make it span full width */
+}

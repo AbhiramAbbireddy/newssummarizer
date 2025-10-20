@@ -1,0 +1,22 @@
+/* src/App.css */
+.app {
+  width: 100%;
+  min-height: 100vh;
+  padding-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+  /* This creates the soft gradient from your mockup */
+  background: radial-gradient(
+    circle at 50% 0%,
+    hsl(214, 40%, 96%),
+    #ffffff 40%
+  );
+}
+
+.container {
+  width: 100%;
+  max-width: 800px; /* Max width for our content */
+  padding: 0 1rem;
+}

@@ -1,0 +1,97 @@
+/* src/components/InputArea/InputArea.css */
+.input-area {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  overflow: hidden; /* To keep the rounded corners with the tabs */
+}
+
+/* --- Tab Styles --- */
+.tab-switcher {
+  display: flex;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tab-btn {
+  flex: 1; /* Each button takes half the space */
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  background-color: #f8fafc; /* Inactive tab background */
+  color: #64748b; /* Inactive tab text */
+  transition: all 0.2s ease-in-out;
+  border-bottom: 3px solid transparent; /* Placeholder for active state */
+}
+
+.tab-btn span {
+  margin-right: 0.5rem;
+}
+
+.tab-btn:hover {
+  background-color: #f1f5f9;
+}
+
+.tab-btn.active {
+  background-color: #ffffff;
+  color: #4a80ee;
+  border-bottom-color: #4a80ee;
+}
+
+/* --- Form Styles --- */
+.input-form {
+  padding: 1.5rem;
+}
+
+.input-container {
+  width: 100%;
+}
+
+.url-input,
+.text-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.url-input:focus,
+.text-input:focus {
+  outline: none;
+  border-color: #4a80ee;
+  box-shadow: 0 0 0 3px rgba(74, 128, 238, 0.1);
+}
+
+.text-input {
+  min-height: 150px;
+  resize: vertical;
+  font-family: inherit; /* Make textarea use the same font */
+}
+
+.generate-btn {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #4a80ee;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.generate-btn:hover {
+  background-color: #3c6ad8;
+}
+
+.generate-btn:disabled {
+  background-color: #a5b4fc;
+  cursor: not-allowed;
+}

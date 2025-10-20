@@ -6,6 +6,7 @@ import InputArea from './components/InputArea/InputArea';
 import Loader from './components/Loader/Loader'; // <-- 1. IMPORT LOADER
 import ResultsArea from './components/ResultsArea/ResultsArea'; // <-- 2. IMPORT RESULTSAREA
 import Footer from './components/Footer/Footer';
+import ThemeToggle from './components/ThemeToggle/ThemeToggle';
 
 // Define the server URL
 const API_BASE_URL = "http://localhost:3001";
@@ -62,6 +63,7 @@ function App() {
 
   return (
     <div className="app">
+      <ThemeToggle />
       <div className="container">
         <Header />
         

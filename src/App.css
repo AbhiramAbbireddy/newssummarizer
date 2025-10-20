@@ -7,16 +7,20 @@
   flex-direction: column;
   align-items: center;
   
-  /* This creates the soft gradient from your mockup */
+  /* Use theme-aware gradient */
   background: radial-gradient(
     circle at 50% 0%,
-    hsl(214, 40%, 96%),
-    #ffffff 40%
+    var(--bg-gradient-start),
+    var(--bg-primary) 40%
   );
+  
+  /* Smooth transition between themes */
+  transition: background 0.3s ease;
 }
 
 .container {
   width: 100%;
   max-width: 800px; /* Max width for our content */
   padding: 0 1rem;
+  flex-grow: 1;
 }

@@ -1,0 +1,29 @@
+/* src/components/ThemeToggle/ThemeToggle.css */
+.theme-toggle-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  font-size: 1.25rem;
+  cursor: pointer;
+  box-shadow: var(--card-shadow);
+  transition: all 0.2s ease;
+}
+
+.theme-toggle-btn:hover {
+  color: var(--text-primary);
+  background-color: var(--bg-hover);
+  transform: translateY(-2px);
+}
